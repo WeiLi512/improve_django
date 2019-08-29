@@ -8,7 +8,7 @@ class Menu(models.Model):
     created_date = models.DateTimeField(
             default=timezone.now)
     expiration_date = models.DateTimeField(
-            blank=True, null=True)
+            blank=False, null=False)
 
     def __str__(self):
         return self.season
