@@ -7,8 +7,7 @@ class Menu(models.Model):
     items = models.ManyToManyField('Item', related_name='items')
     created_date = models.DateTimeField(
             default=timezone.now)
-    expiration_date = models.DateTimeField(
-            blank=False, null=False)
+    expiration_date = models.DateField()
 
     def __str__(self):
         return self.season
