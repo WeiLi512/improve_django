@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.http import Http404
 from operator import attrgetter
@@ -42,6 +43,7 @@ def item_detail(request, pk):
     return render(request, 'menu/detail_item.html', {'item': item})
 
 
+@login_required
 def create_new_menu(request):
     """
     Create New Menu View
@@ -55,9 +57,10 @@ def create_new_menu(request):
             return redirect('menu_detail', pk=menu.pk)
     else:
         form = MenuForm()
-    return render(request, 'menu/menu_edit.html', {'form': form})
+    return render(request, 'menu/menu_edit.html', {'form': form, 'title': 'Create Menu'})
 
 
+@login_required
 def edit_menu(request, pk):
     """
     Edit Menu View
@@ -75,4 +78,4 @@ def edit_menu(request, pk):
             return redirect('menu_detail', pk=menu.pk)
     else:
         form = MenuForm(instance=menu)
-    return render(request, 'menu/menu_edit.html', {'form': form})
+    return render(request, 'menu/menu_edit.html', {'form': form, 'title': 'Edit Menu'})
