@@ -17,3 +17,4 @@ class MenuForm(forms.ModelForm):
             raise forms.ValidationError('Season must be 3 characters or longer')
         if season.isnumeric():
             raise forms.ValidationError('Season can not be only digits.')
+        return season
